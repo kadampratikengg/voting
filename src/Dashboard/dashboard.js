@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Menu, Home, User, Settings, Users } from "lucide-react";
+import { Menu, Home, Users, Settings, User, LogOut } from "lucide-react";
 import "./dashboard.css";
 
 export default function Dashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State to manage dropdown visibility
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -21,25 +22,16 @@ export default function Dashboard() {
         <nav>
           <ul>
             <li>
-              <Link to="/dashboard">
+              <Link to="/Dashboard/dashboard">
                 <Home /> {isSidebarOpen && "Dashboard"}
               </Link>
             </li>
             <li>
-              <Link to="/users">
+              <Link to="/Dashboard/users">
                 <Users /> {isSidebarOpen && "Users"}
               </Link>
             </li>
-            <li>
-              <Link to="/profile">
-                <User /> {isSidebarOpen && "Profile"}
-              </Link>
-            </li>
-            <li>
-              <Link to="/settings">
-                <Settings /> {isSidebarOpen && "Settings"}
-              </Link>
-            </li>
+            {/* Removed Profile and Settings from the sidebar */}
           </ul>
         </nav>
       </aside>
@@ -49,15 +41,57 @@ export default function Dashboard() {
         {/* Navbar */}
         <header className="top-navbar">
           <h1>Dashboard</h1>
-          <button className="logout-button" onClick={handleLogout}>Logout</button>
+          <div className="logout-dropdown">
+            <button 
+              className="logout-button" 
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            >
+              <LogOut size={24} /> Logout
+            </button>
+
+            {/* Dropdown Menu */}
+            {isDropdownOpen && (
+              <div className="dropdown-menu">
+                <ul>
+                  <li>
+                    <Link to="/Dashboard/profile">
+                      <User /> Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/Dashboard/settings">
+                      <Settings /> Settings
+                    </Link>
+                  </li>
+                  <li>
+                    <button onClick={handleLogout}>
+                      <LogOut /> Log Out
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
         </header>
 
         {/* Dashboard Sections */}
         <section className="dashboard-grid">
-          <div className="dashboard-section">Section 1</div>
-          <div className="dashboard-section">Section 2</div>
-          <div className="dashboard-section">Section 3</div>
-          <div className="dashboard-section">Section 4</div>
+          <div className="dashboard-section">
+            <h3>Section 1</h3>
+            <p>Content for section 1</p>
+          </div>
+          <div className="dashboard-section">
+            <h3>Section 2</h3>
+            <p>Content for section 2</p>
+          </div>
+          <div className="dashboard-section">
+            <h3>Section 3</h3>
+            <p>Content for section 3</p>
+          </div>
+          <div className="dashboard-section">
+            <h3>Section 4</h3>
+            <p>Content for section 4</p>
+          </div>
         </section>
       </main>
     </div>

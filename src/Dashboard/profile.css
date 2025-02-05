@@ -1,0 +1,29 @@
+/* profile.css */
+.profile-section {
+    margin-left: 250px; /* Adjust according to sidebar width */
+    padding: 20px;
+  }
+  
+  .profile-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .profile-section input {
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .profile-section button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .profile-section button:hover {
+    background-color: #0056b3;
+  }
+  
