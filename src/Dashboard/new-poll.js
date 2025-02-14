@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, Home, Users, Settings, User, LogOut, BarChart } from "lucide-react"; // Import icons from lucide
 import "./new-poll.css"; // Assuming you have styles already in place
+import * as XLSX from 'xlsx';
+
 
 export default function NewPoll() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -13,6 +15,7 @@ export default function NewPoll() {
   const [region, setRegion] = useState("");
   const [voterList, setVoterList] = useState(null);
   const [candidates, setCandidates] = useState([]); // Temporary storage for candidates
+  const [selectedCandidates, setSelectedCandidates] = useState([]); // Track selected candidates
   const navigate = useNavigate();
 
   // Handle form submission for poll creation
@@ -34,7 +37,7 @@ export default function NewPoll() {
     if (candidateName && candidateSignName && candidatePhoto) {
       setCandidates([
         ...candidates,
-        { candidateName, candidateSignName, candidatePhoto },
+        { candidateName, candidateSignName, candidatePhoto, isSelected: false },
       ]);
       // Reset candidate fields after saving
       setCandidateName("");
@@ -43,6 +46,17 @@ export default function NewPoll() {
     } else {
       alert("Please fill all the candidate details before adding.");
     }
+  };
+
+  // Handle checkbox toggle
+  const handleCheckboxChange = (index) => {
+    const updatedCandidates = [...candidates];
+    updatedCandidates[index].isSelected = !updatedCandidates[index].isSelected;
+    setCandidates(updatedCandidates);
+
+    // Track selected candidates in the selectedCandidates state
+    const selected = updatedCandidates.filter((candidate) => candidate.isSelected);
+    setSelectedCandidates(selected);
   };
 
   // Handle logout
@@ -166,8 +180,6 @@ export default function NewPoll() {
               />
             </div>
 
-         
-
             {/* New Candidate Button */}
             <button
               type="button"
@@ -177,10 +189,9 @@ export default function NewPoll() {
               Add Candidate
             </button>
 
-            
           </form>
 
-          {/* List of added candidates */}
+          {/* List of added candidates with checkboxes */}
           {candidates.length > 0 && (
             <div className="candidate-list">
               <h3>Added Candidates:</h3>
@@ -194,26 +205,35 @@ export default function NewPoll() {
                       alt={candidate.candidateName}
                       width="50"
                     />
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={candidate.isSelected}
+                        onChange={() => handleCheckboxChange(index)}
+                      />
+                      Select
+                    </label>
                   </li>
                 ))}
               </ul>
             </div>
           )}
 
+          <div className="form-group">
+            <label>Upload Voter List</label>
+            <input
+              type="file"
+              onChange={(e) => setVoterList(e.target.files[0])}
+              required
+            />
+          </div>
 
-            <div className="form-group">
-              <label>Upload Voter List</label>
-              <input
-                type="file"
-                onChange={(e) => setVoterList(e.target.files[0])}
-                required
-              />
-            </div>
-
-
-            <button type="submit" className="submit-button">Create Poll</button>
-
-          
+          {/* Create Poll Button - Only visible if voter list is uploaded */}
+          {voterList && (
+            <button type="submit" className="submit-button">
+              Create Poll
+            </button>
+          )}
         </section>
       </main>
     </div>

@@ -21,11 +21,6 @@
     display: none;
   }
   
-  /* Menu toggle button */
-  .menu-toggle {
-    display: none; /* Hide menu toggle button on large screens */
-  }
-  
   /* Main content styling */
   .main-content {
     flex-grow: 1;
@@ -81,6 +76,7 @@
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    justify-content: space-between; /* Align image on the left, text on the right */
   }
   
   .candidate-list li p {
