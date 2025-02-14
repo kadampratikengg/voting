@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, Home, User, Settings, Users } from "lucide-react";
+import { Menu, Home, User, Settings, Users, LogOut, BarChart } from "lucide-react";
 import "./profile.css"; // You can import your CSS here for the profile page
 
 export default function Profile() {
@@ -17,8 +17,15 @@ export default function Profile() {
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State to manage dropdown visibility
+
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleLogout = () => {
+    navigate("/"); // Redirect to Login Page
   };
 
   const handleSubmit = (e) => {
@@ -44,16 +51,11 @@ export default function Profile() {
               <Link to="/Dashboard/users">
                 <Users /> {isSidebarOpen && "Users"}
               </Link>
-            </li>
-            <li>
-              <Link to="/Dashboard/profile">
-                <User /> {isSidebarOpen && "Profile"}
+              <li>
+              <Link to="/Dashboard/poll">
+                <BarChart /> {isSidebarOpen && "Poll"} {/* BarChart icon added for Poll */}
               </Link>
             </li>
-            <li>
-              <Link to="/Dashboard/settings">
-                <Settings /> {isSidebarOpen && "Settings"}
-              </Link>
             </li>
           </ul>
         </nav>
@@ -64,6 +66,37 @@ export default function Profile() {
         {/* Profile Content */}
         <header className="top-navbar">
           <h1>Edit Profile</h1>
+          <div className="logout-dropdown">
+            <button 
+              className="logout-button" 
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            >
+              <LogOut size={24} /> Logout
+            </button>
+
+            {/* Dropdown Menu */}
+            {isDropdownOpen && (
+              <div className="dropdown-menu">
+                <ul>
+                  <li>
+                    <Link to="/Dashboard/profile">
+                      <User /> Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/Dashboard/settings">
+                      <Settings /> Settings
+                    </Link>
+                  </li>
+                  <li>
+                    <button onClick={handleLogout}>
+                      <LogOut /> Log Out
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
         </header>
 
         <section className="profile-section">

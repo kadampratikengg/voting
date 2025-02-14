@@ -1,0 +1,100 @@
+/* Login.css */
+
+/* Style the container to center the login form */
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  
+  /* Style the login card */
+  .login-card {
+    width: 24rem;
+    padding: 1.5rem;
+    background-color: #2d3748; /* Darker background for the card */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 1rem; /* Rounded corners */
+  }
+  
+  /* Header style */
+  .login-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  /* Error message style */
+  .login-error {
+    color: #f56565; /* Red color for error messages */
+    font-size: 0.875rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Style for input containers */
+  .input-container {
+    margin-bottom: 1rem;
+    background-color: #4a5568; /* Dark background for input */
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
+  
+  /* Style for input icons */
+  .input-icon {
+    color: #e2e8f0; /* Light color for icons */
+  }
+  
+  /* Style for the input fields */
+  .input-field {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 0.5rem;
+  }
+  
+  .input-field:focus {
+    border: none;
+    outline: none;
+  }
+  
+  /* Style for the login button */
+  .login-button {
+    width: 100%;
+    background-color: #3182ce; /* Blue color for the button */
+    color: white;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    text-align: center;
+  }
+  
+  .login-button:hover {
+    background-color: #38a169; /* Darker blue on hover */
+  }
+  
+  /* Styling for additional authentication links */
+  .auth-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+  
+  /* Style for the 'Forgot Password?' and 'Create Account' buttons */
+  .auth-link-button {
+    background-color: transparent;
+    color: #3182ce; /* Blue color for link-style buttons */
+    border: none;
+    font-size: 0.875rem;
+    padding: 0.5rem 0;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .auth-link-button:hover {
+    color: #38a169; /* Darker blue on hover */
+  }
+  

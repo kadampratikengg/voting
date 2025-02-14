@@ -58,6 +58,7 @@
   .user-form {
     display: flex;
     gap: 10px;
+    padding-top: 20px;
     margin-bottom: 20px;
   }
   
@@ -110,3 +111,5 @@
     padding: 10px;
     border: 1px solid #ddd;
   }  
+
+  

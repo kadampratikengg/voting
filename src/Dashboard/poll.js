@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, Home, Users, Settings, User, LogOut, BarChart } from "lucide-react"; // Import the BarChart icon for Poll
-import "./dashboard.css";
-import Poll from './poll';
+
+import "./poll.css";
+
 
 export default function Dashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -47,7 +48,7 @@ export default function Dashboard() {
       <main className="main-content">
         {/* Navbar */}
         <header className="top-navbar">
-          <h1>Dashboard</h1>
+          <h1>Poll</h1>
           <div className="logout-dropdown">
             <button 
               className="logout-button" 
@@ -84,20 +85,23 @@ export default function Dashboard() {
         {/* Dashboard Sections */}
         <section className="dashboard-grid">
           <div className="dashboard-section">
-            <h3>Section 1</h3>
-            <p>Content for section 1</p>
+            <h3>Current Poll</h3>
+            <p>Recently no poll Execute</p>
           </div>
           <div className="dashboard-section">
-            <h3>Section 2</h3>
-            <p>Content for section 2</p>
+            <h3>Result</h3>
+            <p>No Result Available</p>
           </div>
           <div className="dashboard-section">
-            <h3>Section 3</h3>
-            <p>Content for section 3</p>
+            <h3>History</h3>
+            <p>No History Available</p>
           </div>
           <div className="dashboard-section">
-            <h3>Section 4</h3>
-            <p>Content for section 4</p>
+            <h3>Generate New Poll</h3>
+             <div className="poll-options">
+               <button onClick={() => navigate("/Dashboard/new-poll")}>New Poll</button>
+               <button onClick={() => navigate("/Dashboard/edit-poll")}>Edit Poll</button>
+             </div>
           </div>
         </section>
       </main>
